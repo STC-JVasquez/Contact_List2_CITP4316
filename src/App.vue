@@ -4,6 +4,22 @@ import {ref} from 'vue'
 //variables
 const name = ref('')
 const phone = ref('')
+const contacts = ref([])
+
+//add new contact function
+const addContact = () => {
+  if (name.value.trim() === '' || phone.value.trim() === '') {
+    return
+  }
+  contacts.value.push({
+    name: name.value,
+    name: phone.value,
+  })
+
+  //clear fields after adding
+  name.value = ''
+  phone.value = ''
+}
 </script>
 
 <template>
@@ -19,6 +35,7 @@ const phone = ref('')
           <label for="phone">Phone:</label>
           <input type="text" id="phone" v-model="phone" placeholder="Enter phone" />
         </div>
+        <button type="submit">Add Contact</button>
       </form>
 
     </section>
