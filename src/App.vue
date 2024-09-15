@@ -18,6 +18,11 @@ const addContact = () => {
   name.value = ''
   phone.value = ''
 }
+
+//remove a contact
+const removeContact = (contact) => {
+  contacts.value = contacts.value.filter(item => item !== contact)
+}
 </script>
 
 <template>
