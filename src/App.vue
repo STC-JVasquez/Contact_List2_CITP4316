@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue'
+import {ref , onMounted, watch} from 'vue'
 
 //variables
 const name = ref('')
@@ -23,6 +23,16 @@ const addContact = () => {
 const removeContact = (contact) => {
   contacts.value = contacts.value.filter(item => item !== contact)
 }
+
+//load data from storage when component is mounted
+onMounted(() => {
+  contacts.value = JSON.parse(localStorage.getItem('contacts')) || []
+})
+
+//save changed to storage
+watch(contacts, (newVal) => {
+  localStorage.setItem('contacts', JSON.stringify(newVal))
+}, {deep: true})
 </script>
 
 <template>
