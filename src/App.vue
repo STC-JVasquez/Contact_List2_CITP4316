@@ -11,10 +11,8 @@ const addContact = () => {
   if (name.value.trim() === '' || phone.value.trim() === '') {
     return
   }
-  contacts.value.push({
-    name: name.value,
-    name: phone.value,
-  })
+  //combine name and number
+  contacts.value.push(`${name.value}: ${phone.value}`)
 
   //clear fields after adding
   name.value = ''
@@ -37,7 +35,20 @@ const addContact = () => {
         </div>
         <button type="submit">Add Contact</button>
       </form>
+    </section>
 
+    <section class="contacts-list">
+      <h3>Saved Contacts</h3>
+      <div class="list">
+        <div v-for="contact in contacts" :key = "contact" class="contact-item">
+          <div class="contact-content">
+            <span>{{ contact }}</span>
+            <div class="actions">
+              <button class="delet" @click="removeContact(contact)">Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
